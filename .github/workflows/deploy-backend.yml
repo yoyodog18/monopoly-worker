@@ -9,12 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Publish with Wrangler
-        uses: cloudflare/wrangler-action@v3
+      - uses: actions/checkout@v4
+      - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: backend        # wrangler.toml lives here
+          workingDirectory: backend
           command: deploy
