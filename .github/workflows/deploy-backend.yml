@@ -2,7 +2,8 @@ name: Deploy Cloudflare Worker (backend)
 
 on:
   push:
-    branches: [ "main" ]   # change if your default branch isn't main
+    branches: [ "main" ]
+  workflow_dispatch: {}   # lets you run it manually from the Actions tab
 
 jobs:
   deploy:
@@ -15,5 +16,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: backend        # <-- IMPORTANT: wrangler.toml is in /backend
+          workingDirectory: backend        # wrangler.toml lives here
           command: deploy
