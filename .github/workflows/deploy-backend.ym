@@ -7,16 +7,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Publish with Wrangler
-        uses: cloudflare/wrangler-action@v3
+      - uses: actions/checkout@v4
+      - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # The working directory where wrangler.toml lives:
           workingDirectory: backend
           command: deploy
+
